@@ -24,7 +24,7 @@ class App extends Component {
                 <Nav />
                 {goToLogin === true ? (
                     <Fragment>
-                        <Route path='/' component={Login} />
+                        <Route exact path='/' component={Login} />
                         <Route path='/createuser' component={CreateUser} />
                     </Fragment>
                 ) : <Dashboard />}

@@ -182,7 +182,8 @@ function formatQuestion({ optionOneText, optionTwoText, author }) {
         optionTwo: {
             votes: [],
             text: optionTwoText
-        }
+        },
+        comments: []
     };
 }
 
@@ -275,7 +276,7 @@ export function _saveComment(comment) {
             ...questions,
             [finalComment.qid]: {
                 ...questions[finalComment.qid],
-                comments: [...questions[finalComment.qid].comments, commentId]
+                comments: questions[finalComment.qid].comments.concat([commentId])
             }
         };
         comments = {
