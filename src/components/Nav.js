@@ -1,60 +1,74 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Divider from "@material-ui/core/Divider";
+
+const styles = theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+});
+
 class Nav extends Component {
-    render() {
-        const { authUser } = this.props;
-        return (
-            <nav>
-                <ul>
-                    <li>
-                        <NavLink to="/" activeClassName="active">
-                            Home
-                        </NavLink>
-                    </li>
-                    {authUser === null ? (
-                        <Fragment>
-                            <li>Hello Friend!</li>
-                            <li>
-                                <NavLink
-                                    to="/createuser"
-                                    activeClassName="active"
-                                >
-                                    New User
-                                </NavLink>
-                            </li>
-                        </Fragment>
-                    ) : (
-                        <Fragment>
-                            <li>
-                                <NavLink to="/add" activeClassName="active">
-                                    New Question
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/leaderboard"
-                                    activeClassName="active"
-                                >
-                                    Leaderboard
-                                </NavLink>
-                            </li>
-                            <li>Welcome {authUser}!!!</li>
-                            <li>
-                                <NavLink to="/logout">Logout</NavLink>
-                            </li>
-                        </Fragment>
-                    )}
-                </ul>
-            </nav>
-        );
-    }
+  render() {
+    const { authUser } = this.props;
+
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <List component="nav">
+          <NavLink to="/" activeClassName="active">
+            <ListItem button>
+              <ListItemText primary="Home" />
+            </ListItem>
+          </NavLink>
+        </List>
+        {authUser === null ? (
+          <List component="nav">
+            <Divider />
+            <NavLink to="/createuser" activeClassName="active">
+              <ListItem button>
+                <ListItemText primary="New User" />
+              </ListItem>
+            </NavLink>
+          </List>
+        ) : (
+          <List component="nav">
+            <Divider />
+            <NavLink to="/add" activeClassName="active">
+              <ListItem button>
+                <ListItemText primary="New Question" />
+              </ListItem>
+            </NavLink>
+            <Divider />
+            <NavLink to="/leaderboard" activeClassName="active">
+              <ListItem button>
+                <ListItemText primary="Leaderboard" />
+              </ListItem>
+            </NavLink>
+            <Divider />
+            <NavLink to="/logout">
+              <ListItem button>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            </NavLink>
+          </List>
+        )}
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ authUser }) {
-    return {
-        authUser
-    };
+  return {
+    authUser
+  };
 }
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps)(withStyles(styles)(Nav));

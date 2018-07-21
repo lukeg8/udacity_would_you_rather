@@ -11,7 +11,7 @@ import {
     addVotesToQuestion,
     addCIdToQ
 } from "./questions";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { showLoading, hideLoading } from "./progressBar";
 import { addComment, receiveCommentData } from "./comments";
 
 export function handleInitialData() {

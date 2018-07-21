@@ -4,60 +4,116 @@ import { connect } from "react-redux";
 import { handleAddUser } from "../actions/users";
 import { Redirect, withRouter } from "react-router-dom";
 
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
+const styles = theme => ({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "column"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  },
+  menu: {
+    width: 200
+  }
+});
+
 class CreateUser extends Component {
-    state = {
-        redirect: false
-    };
-    handleSubmit = e => {
-        e.preventDefault();
-        const userObj = {
-            id: this._username.value,
-            name: this._name.value,
-            avatarURL: this._avatarUrl.value,
-            answers: {},
-            questions: []
-        };
-        this.props.handleAddUser(userObj);
-        this.setState({
-            redirect: true
-        });
-    };
-    render() {
-        if (this.state.redirect === true) {
-            return <Redirect to="/" />;
-        }
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="username"
-                        ref={inputValue => (this._username = inputValue)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="name"
-                        ref={inputValue => (this._name = inputValue)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Avatar URL"
-                        ref={inputValue => (this._avatarUrl = inputValue)}
-                    />
-                    <button>Submit</button>
-                </form>
-            </div>
-        );
+  state = {
+    redirect: false,
+    username: "luke",
+    name: "",
+    avatarURL: ""
+  };
+  handleTextChange = (e, inputField) => {
+    console.log(inputField);
+    this.setState(prevState => ({
+      inputField: e.target.value
+    }));
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this._username.value === "" || this._name.value === "") {
+      return;
     }
+    const userObj = {
+      id: this._username.value,
+      name: this._name.value,
+      avatarURL: this._avatarUrl.value,
+      answers: {},
+      questions: []
+    };
+    this.props.handleAddUser(userObj);
+    this.setState({
+      redirect: true
+    });
+  };
+
+  render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/" />;
+    }
+    const { classes } = this.props;
+    return (
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onSubmit={this.handleSubmit}
+      >
+        <TextField
+          key="username"
+          id="username"
+          label="username"
+          placeholder="username"
+          className={classes.textField}
+          margin="normal"
+          inputProps={{ ref: inputValue => (this._username = inputValue) }}
+        />
+        <TextField
+          key="name"
+          id="name"
+          label="name"
+          placeholder="name"
+          className={classes.textField}
+          margin="normal"
+          inputProps={{ ref: inputValue => (this._name = inputValue) }}
+        />
+        <TextField
+          key="avatarURL"
+          id="avatarURL"
+          label="avatarURL"
+          placeholder="avatarURL"
+          className={classes.textField}
+          margin="normal"
+          inputProps={{ ref: inputValue => (this._avatarUrl = inputValue) }}
+        />
+        <br />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={this.handleSubmit}
+        >
+          Submit
+        </Button>
+      </form>
+    );
+  }
 }
 
 function mapDispatchToState(dispatch) {
-    return bindActionCreators({ handleAddUser }, dispatch);
+  return bindActionCreators({ handleAddUser }, dispatch);
 }
 
 export default withRouter(
-    connect(
-        null,
-        mapDispatchToState
-    )(CreateUser)
+  connect(
+    null,
+    mapDispatchToState
+  )(withStyles(styles)(CreateUser))
 );

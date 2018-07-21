@@ -4,11 +4,13 @@ import users from "./users";
 import authUser from "./authUser";
 import questions from "./questions";
 import comments from "./comments";
+import progressBar from "./progressBar";
 
 export default combineReducers({
-    authUser,
-    users,
-    questions,
-    comments,
-    loadingBar: loadingBarReducer
+  authUser,
+  users,
+  questions,
+  comments,
+  progressBar,
+  loadingBar: loadingBarReducer
 });
