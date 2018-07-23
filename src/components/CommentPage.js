@@ -23,10 +23,12 @@ class CommentPage extends Component {
     }
 }
 
-function mapStateToProps({ questions }, { qid }) {
+function mapStateToProps({ questions , comments}, { qid }) {
     const commentArray = questions[qid].comments;
     return {
-        commentArray: commentArray ? commentArray: null,
+        commentArray: commentArray ? commentArray.sort((a,b)=> {
+            return comments[a].timestamp - comments[b].timestamp
+        }): null,
         qid
     };
 }

@@ -14,6 +14,8 @@ import {
 import { showLoading, hideLoading } from "./progressBar";
 import { addComment, receiveCommentData } from "./comments";
 
+import { handleSetAuthUser } from "./authUser";
+
 export function handleInitialData() {
     return dispatch => {
         dispatch(showLoading());
@@ -23,6 +25,7 @@ export function handleInitialData() {
                 dispatch(receieveQuestionsData(questions));
                 dispatch(receiveCommentData(comments));
                 dispatch(hideLoading());
+                dispatch(handleSetAuthUser('johndoe'))
             })
             .catch(err => console.log("Error in handleInitialData", err));
     };

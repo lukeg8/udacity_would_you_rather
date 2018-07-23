@@ -29,11 +29,13 @@ class NewComment extends Component {
                 <form onSubmit={this.handleCommentSubmit}>
                     <textarea
                         maxLength="100"
-                        placeholder="Give your Comments here"
+                        rows="5"
+                        placeholder="Write your Comments here"
                         onChange={this.handleTextChange}
                         value={text}
                     />
-                    {commentLength < 100 && (commentLength)}
+                    {commentLength < 100 && commentLength}
+                    <br />
                     <button type="submit" disabled={text === ""}>
                         Submit
                     </button>

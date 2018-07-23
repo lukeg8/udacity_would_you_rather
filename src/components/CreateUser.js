@@ -12,15 +12,16 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
-    flexDirection: "column"
+    flexDirection: "column",
+    width: 300
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200
+    width: 300
   },
   menu: {
-    width: 200
+    width: 300
   }
 });
 

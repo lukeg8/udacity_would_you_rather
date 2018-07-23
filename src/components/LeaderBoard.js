@@ -6,12 +6,9 @@ class LeaderBoard extends Component {
     render() {
         return (
             <div>
-                LeaderBoard
-                <div>
-                    {this.props.userArray.map(user => {
-                        return <LeaderBoardUser key={user} userId={user} />;
-                    })}
-                </div>
+                {this.props.userArray.map(user => {
+                    return <LeaderBoardUser key={user} userId={user} />;
+                })}
             </div>
         );
     }
@@ -23,7 +20,8 @@ function mapStateToProps({ users }) {
             return (
                 Object.keys(users[b].answers).length +
                 users[b].questions.length -
-                (Object.keys(users[a].answers).length + users[a].questions.length)
+                (Object.keys(users[a].answers).length +
+                    users[a].questions.length)
             );
         })
     };

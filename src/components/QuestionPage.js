@@ -5,6 +5,116 @@ import { Redirect, withRouter } from "react-router-dom";
 import { handleSaveAnswer } from "../actions/shared";
 import CommentPage from "./CommentPage";
 
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+
+const styles = theme => ({
+    container: {
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "column",
+        width: 500
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 500
+    },
+    menu: {
+        width: 500
+    },
+    margin: {
+        margin: theme.spacing.unit
+    },
+
+    cssFocused: {},
+    bootstrapRoot: {
+        padding: 0,
+        "label + &": {
+            marginTop: theme.spacing.unit * 3
+        }
+    },
+    bootstrapInput: {
+        borderRadius: 4,
+        backgroundColor: theme.palette.common.white,
+        border: "1px solid #ced4da",
+        fontSize: 16,
+        padding: "10px 12px",
+        width: "calc(100% - 24px)",
+        transition: theme.transitions.create(["border-color", "box-shadow"]),
+        fontFamily: [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            '"Segoe UI"',
+            "Roboto",
+            '"Helvetica Neue"',
+            "Arial",
+            "sans-serif",
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"'
+        ].join(","),
+        "&:focus": {
+            borderColor: "#80bdff",
+            boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
+        }
+    },
+    bootstrapFormLabel: {
+        fontSize: 18
+    },
+    root: {
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
+    },
+    card: {
+        display: "flex"
+    },
+    paperRoot: {
+        flexGrow: 1
+    },
+    listRoot: {
+        width: "100%",
+        maxWidth: 360
+    },
+    card: {
+        display: "flex"
+    },
+    details: {
+        display: "flex",
+        flexDirection: "column"
+    },
+    content: {
+        flex: "1 0 auto"
+    },
+    cover: {
+        width: 151,
+        height: 151
+    },
+    playIcon: {
+        height: 38,
+        width: 38
+    }
+});
+
 class QuestionPage extends Component {
     state = {
         selectedOption: "optionOne"
@@ -24,20 +134,20 @@ class QuestionPage extends Component {
             return <Redirect to="/" />;
         }
         if (this.props.question === null) {
-            return <div>Thisquestion doesn't exist</div>;
+            return <div>This question doesn't exist</div>;
         }
         const { selectedOption } = this.state;
-        const { user, question } = this.props;
+        const { user, question, users, authUser } = this.props;
         const userAnswer = Object.keys(user.answers).includes(question.id);
         const optionOneVotes = question.optionOne.votes.length;
         const optionTwoVotes = question.optionTwo.votes.length;
         const totalVotes = optionOneVotes + optionTwoVotes;
         const optionOneVotesPercentage = optionOneVotes / totalVotes;
         const optionTwoVotesPercentage = optionTwoVotes / totalVotes;
+
+        const { classes } = this.props;
         return (
             <div>
-                {question.id}
-
                 {userAnswer === true ? (
                     <div>
                         Would you rather?
@@ -55,27 +165,69 @@ class QuestionPage extends Component {
                     </div>
                 ) : (
                     <div>
-                        <p>UNANSWER - Please answer</p>
                         <form onSubmit={e => this.handleSubmit(e, question.id)}>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="optionOne"
-                                    checked={selectedOption === "optionOne"}
-                                    onChange={this.handleRadioChange}
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    className={classes.cover}
+                                    image={users[question.author].avatarURL}
+                                    title="Live from space album cover"
                                 />
-                                {question.optionOne.text}
-                            </label>
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="optionTwo"
-                                    checked={selectedOption === "optionTwo"}
-                                    onChange={this.handleRadioChange}
-                                />
-                                {question.optionTwo.text}
-                            </label>
-                            <button>Submit</button>
+                                <div className={classes.details}>
+                                    <CardContent className={classes.content}>
+                                        <FormControl
+                                            component="fieldset"
+                                            required
+                                            error
+                                            className={classes.formControl}
+                                        >
+                                            <FormLabel>
+                                                Would you Rather...
+                                            </FormLabel>
+                                            <RadioGroup
+                                                className={classes.group}
+                                                value={
+                                                    this.state.selectedOption
+                                                }
+                                                onChange={
+                                                    this.handleRadioChange
+                                                }
+                                            >
+                                                <FormControlLabel
+                                                    value="optionOne"
+                                                    control={
+                                                        <Radio color="primary" />
+                                                    }
+                                                    label={
+                                                        question.optionOne.text
+                                                    }
+                                                />
+                                                <FormControlLabel
+                                                    value="optionTwo"
+                                                    control={
+                                                        <Radio color="primary" />
+                                                    }
+                                                    label={
+                                                        question.optionTwo.text
+                                                    }
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                        <br />
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={e =>
+                                                this.handleSubmit(
+                                                    e,
+                                                    question.id
+                                                )
+                                            }
+                                        >
+                                            Submit
+                                        </Button>
+                                    </CardContent>
+                                </div>
+                            </Card>
                         </form>
                     </div>
                 )}
@@ -93,7 +245,8 @@ function mapStateToProps({ questions, users, authUser }, props) {
     return {
         question: question ? question : null,
         user,
-        authUser
+        authUser,
+        users
     };
 }
 
@@ -104,5 +257,5 @@ export default withRouter(
     connect(
         mapStateToProps,
         mapStateToDispatch
-    )(QuestionPage)
+    )(withStyles(styles)(QuestionPage))
 );
