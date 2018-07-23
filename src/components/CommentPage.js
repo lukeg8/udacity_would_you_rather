@@ -11,8 +11,8 @@ class CommentPage extends Component {
                 <ul>
                     {commentArray && commentArray.map(commentId => {
                         return (
-                            <li key="commentId">
-                                <Comment commentId={commentId} />
+                            <li key={commentId}>
+                                <Comment key={commentId} commentId={commentId} />
                             </li>
                         );
                     })}

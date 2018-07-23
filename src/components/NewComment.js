@@ -34,7 +34,7 @@ class NewComment extends Component {
                         onChange={this.handleTextChange}
                         value={text}
                     />
-                    {commentLength < 100 && commentLength}
+                    {commentLength < 100 && `${commentLength} Characters left`}
                     <br />
                     <button type="submit" disabled={text === ""}>
                         Submit
