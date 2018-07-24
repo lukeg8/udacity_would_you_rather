@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Question from "./Question";
 
-import { handleSetAuthUser } from "../actions/authUser";
-
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
@@ -13,16 +11,6 @@ import Tab from "@material-ui/core/Tab";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
-
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import CardMedia from "@material-ui/core/CardMedia";
 
 const styles = {
     paperRoot: {
@@ -30,24 +18,6 @@ const styles = {
     },
     listRoot: {
         width: 350
-    },
-    card: {
-        display: "flex"
-    },
-    details: {
-        display: "flex",
-        flexDirection: "column"
-    },
-    content: {
-        flex: "1 0 auto"
-    },
-    cover: {
-        width: 151,
-        height: 151
-    },
-    playIcon: {
-        height: 38,
-        width: 38
     }
 };
 

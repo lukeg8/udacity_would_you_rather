@@ -3,20 +3,11 @@ import { connect } from "react-redux";
 
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 
 const styles = {
-    paperRoot: {
-        flexGrow: 1
-    },
-    listRoot: {
-        width: "100%",
-        maxWidth: 360
-    },
     card: {
         display: "flex"
     },
@@ -30,10 +21,6 @@ const styles = {
     cover: {
         width: 151,
         height: 151
-    },
-    playIcon: {
-        height: 38,
-        width: 38
     }
 };
 

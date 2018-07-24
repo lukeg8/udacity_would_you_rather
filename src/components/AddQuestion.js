@@ -11,25 +11,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
-    container: {
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        width: 300
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: 300
-    },
-    menu: {
-        width: 300
-    },
-    margin: {
-        margin: theme.spacing.unit
-    },
-
-    cssFocused: {},
     bootstrapRoot: {
         padding: 0,
         "label + &": {

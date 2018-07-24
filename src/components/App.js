@@ -111,28 +111,6 @@ class App extends Component {
                 </main>
             </div>
         );
-
-        // return (
-        //     <div>
-        //         Homepage
-        //         <LoadingBar />
-        //         <Nav />
-        //         {goToLogin === true ? (
-        //             <Fragment>
-        //                 <Route exact path='/' component={Login} />
-        //                 <Route path='/createuser' component={CreateUser} />
-        //             </Fragment>
-        //         ) : <Dashboard />}
-        //         <Route
-        //             exact
-        //             path="/logout"
-        //             render={() => {
-        //                 handleSetAuthUser(null);
-        //                 return <Redirect to="/" />;
-        //             }}
-        //         />
-        //     </div>
-        // );
     }
 }
 

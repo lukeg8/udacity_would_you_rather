@@ -1,30 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
-import PropTypes from 'prop-types';
-
-
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
+
 const styles = {
-    paperRoot: {
-        flexGrow: 1
-    },
-    listRoot: {
-        width: "100%",
-        maxWidth: 360
-    },
     card: {
         display: "flex"
     },
@@ -38,16 +23,12 @@ const styles = {
     cover: {
         width: 151,
         height: 151
-    },
-    playIcon: {
-        height: 38,
-        width: 38
-    },
+    }
 };
 
 class Question extends Component {
     render() {
-        const { question,users } = this.props;
+        const { question, users } = this.props;
 
         if (question === null) {
             return <div>Question doesn't exist</div>;
@@ -95,10 +76,10 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-    question_id: PropTypes.string.isTrequired
-}
+    question_id: PropTypes.string.isRequired
+};
 
-function mapStateToProps({ questions, authUser,users }, { question_id }) {
+function mapStateToProps({ questions, authUser, users }, { question_id }) {
     const question = questions[question_id];
     return {
         question: question ? questions[question_id] : null,
@@ -106,4 +87,6 @@ function mapStateToProps({ questions, authUser,users }, { question_id }) {
         users
     };
 }
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(Question)));
+export default withRouter(
+    connect(mapStateToProps)(withStyles(styles)(Question))
+);
