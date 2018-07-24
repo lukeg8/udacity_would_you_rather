@@ -172,7 +172,7 @@ class QuestionPage extends Component {
                   </Typography><span>{optionOneVotesPercentage}% - {optionOneVotes} votes</span>
                   </Badge>
                   <Typography className={classes.padding} color="primary">
-                    {question.optionTwo.text} <span> {optionTwoVotesPercentage}% - {optionTwoVotes} votes</span>
+                    {question.optionTwo.text} <span style={{paddingLeft:50 }}> {optionTwoVotesPercentage}% - {optionTwoVotes} votes</span>
                   </Typography>
                 </CardContent>
               </div>

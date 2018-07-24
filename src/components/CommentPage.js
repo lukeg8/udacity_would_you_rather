@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Comment from "./Comment";
 import NewComment from "./NewComment";
+import PropTypes  from 'prop-types';
 
 class CommentPage extends Component {
     render() {
@@ -21,6 +22,10 @@ class CommentPage extends Component {
             </div>
         );
     }
+}
+
+CommentPage.propTypes = {
+    qid: PropTypes.string.isRequired
 }
 
 function mapStateToProps({ questions , comments}, { qid }) {

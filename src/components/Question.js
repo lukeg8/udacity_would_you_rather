@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
 import List from "@material-ui/core/List";
@@ -91,6 +92,10 @@ class Question extends Component {
             </div>
         );
     }
+}
+
+Question.propTypes = {
+    question_id: PropTypes.string.isTrequired
 }
 
 function mapStateToProps({ questions, authUser,users }, { question_id }) {
