@@ -17,8 +17,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import Badge from "@material-ui/core/Badge";
-
 const styles = theme => ({
     card: {
         display: "flex"
@@ -91,30 +89,30 @@ class QuestionPage extends Component {
                                         className={classes.title}
                                         color="textSecondary"
                                     >
-                                        {user.answers[question.id]} Tyler ask
+                                        {question.author} ask Would you rather
                                     </Typography>
-                                    <Badge color="secondary" badgeContent="*">
-                                        <Typography
-                                            className={classes.padding}
-                                            color="primary"
-                                        >
-                                            {question.optionOne.text}
-                                        </Typography>
-                                        <span>
+                                    <Typography
+                                        className={classes.padding}
+                                        color="primary"
+                                    >
+                                        {question.optionOne.text}{" "}
+                                        <span style={{ paddingLeft: 50 }}>
                                             {optionOneVotesPercentage}% -{" "}
                                             {optionOneVotes} votes
                                         </span>
-                                    </Badge>
+                                    </Typography>
                                     <Typography
                                         className={classes.padding}
                                         color="primary"
                                     >
                                         {question.optionTwo.text}{" "}
                                         <span style={{ paddingLeft: 50 }}>
-                                            {" "}
                                             {optionTwoVotesPercentage}% -{" "}
                                             {optionTwoVotes} votes
                                         </span>
+                                    </Typography>
+                                    <Typography>
+                                        You selected {user.answers[question.id]}
                                     </Typography>
                                 </CardContent>
                             </div>
