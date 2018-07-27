@@ -1,3 +1,23 @@
+# Would You Rather Project
+
+INSTALL
+```
+git clone https://github.com/lukeg8/udacity_would_you_rather.git
+```
+```
+cd udacity_would_you_rather/
+```
+```
+npm install
+```
+```
+npm start
+```
+```
+Open browser to http://localhost:3000/
+```
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
